@@ -1,87 +1,62 @@
-"use client"
+import { Mail, MapPin, Phone } from 'lucide-react'
+import ContactForm from '../sub/contactfrom'
 
-import { useState } from "react";
-import EnvelopeAnimation from "@/components/sub/envelope-animation"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id]: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    // You can add your form submission logic here
-  };
-
+export default function ContactPage() {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-[40px] font-semibold text-transparent text-center bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
-        Contact Us
-      </h1>
+    <div 
+    className="relative min-h-screen flex flex-col items-center justify-center p-4 bg-cover bg-fixed z-[30] py-20" 
+      style={{ 
+        backgroundImage: "url('/placeholder.svg')",
+      }}
+      id='contact'
+    >
+      <div className="text-center mb-8">
+        <h2 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+          Contact Us 
+        </h2>
+      </div>
+      
+      <div className="max-w-5xl w-full grid gap-8 md:grid-cols-2 bg-cover backdrop-blur-sm rounded-xl shadow-lg">
+        {/* Left Side - Contact Info */}
+        <div className="p-8  text-white flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
+            <p className="text-gray-300 mb-8">
+              We'd love to hear from you. Fill out the form and we'll get back to you as soon as possible.
+            </p>
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-        <div>
-          <EnvelopeAnimation />
+          <div className="space-y-6">
+            <div className="flex items-start space-x-4">
+              <MapPin className="w-6 h-6 text-gray-300 mt-0.5" />
+              <div>
+                <h3 className="font-medium">Our Address</h3>
+                <p className="text-gray-300">123 Business Avenue, Suite 100, San Francisco, CA 94107</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <Phone className="w-6 h-6 text-gray-300 mt-0.5" />
+              <div>
+                <h3 className="font-medium">Phone</h3>
+                <p className="text-gray-300">+1 (555) 123-4567</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <Mail className="w-6 h-6 text-gray-300 mt-0.5" />
+              <div>
+                <h3 className="font-medium">Email</h3>
+                <p className="text-gray-300">contact@yourcompany.com</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium">
-              Name
-            </label>
-            <Input 
-              id="name" 
-              placeholder="Your name" 
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium">
-              Email
-            </label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="your.email@example.com" 
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-sm font-medium">
-              Message
-            </label>
-            <Textarea 
-              id="message" 
-              placeholder="How can we help you?" 
-              rows={4} 
-              value={formData.message}
-              onChange={handleChange}
-            />
-          </div>
-
-          <Button type="submit" className="w-full bg-teal-600 hover:bg-teal-700">
-            Send Message
-          </Button>
-        </form>
+        {/* Right Side - Form */}
+        <div className="p-8 bg-white/90">
+          <ContactForm />
+        </div>
       </div>
     </div>
   )

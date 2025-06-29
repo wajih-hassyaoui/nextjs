@@ -8,6 +8,7 @@ import {
 } from "react-icons/rx";
 
 import { FaYoutube } from "react-icons/fa";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -63,8 +64,8 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="mb-[20px] text-[15px] text-center">
-                &copy; WebChain Dev 2023 Inc. All rights reserved
+            <div className="mb-[20px] text-[15px] text-center z-50">
+                &copy; <Link href={"https://www.linkedin.com/in/wajih-hassyaoui/"} className="hover:text-blue-500">Wajih Hassyaoui</Link> 2025 Inc. All rights reserved
             </div>
         </div>
     </div>
